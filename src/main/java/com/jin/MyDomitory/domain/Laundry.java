@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 
 @Entity
-public class Laundary {
+public class Laundry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class Laundary {
     private String room_num;
 
     @Builder
-    public Laundary(String washer_num,String room_num){
+    public Laundry(String washer_num, String room_num){
         this.washer_num=washer_num;
         this.room_num=room_num;
     }
