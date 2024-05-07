@@ -2,6 +2,7 @@ package com.jin.MyDomitory.controller;
 
 import com.jin.MyDomitory.domain.User;
 import com.jin.MyDomitory.dto.user.AddUserRequest;
+import com.jin.MyDomitory.dto.user.LoginUserRequest;
 import com.jin.MyDomitory.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,13 @@ public class UserController {
         return (newUser!=null)?
                 ResponseEntity.status(HttpStatus.OK).body((newUser)):
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+    @PostMapping("/login")
+    public ResponseEntity<User> Login(@RequestBody LoginUserRequest request){
+        User loggedUser=userService.Login(request);
+        return (loggedUser!=null)?
+                ResponseEntity.status(HttpStatus.OK).build():
+                ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
 }
