@@ -1,13 +1,18 @@
 package com.jin.MyDomitory.domain;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 @Entity
-public class Post {
+public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int Id;
+    private Long Id;
+
+    @CollectionTable(name = "user", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(nullable = false)
     private String title;
@@ -15,8 +20,11 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    public Post(){}
-    public Post(String title,String content){
+    public Board(){}
+
+    @Builder
+    public Board(Long userId, String title, String content){
+        this.userId=userId;
         this.title=title;
         this.content=content;
     }
