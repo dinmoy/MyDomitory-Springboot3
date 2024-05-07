@@ -5,6 +5,8 @@ import com.jin.MyDomitory.dto.personal.AddPersonalScoreRequest;
 import com.jin.MyDomitory.repository.PersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+
 @Service
 public class PersonalService {
     @Autowired
@@ -17,4 +19,6 @@ public class PersonalService {
     public Personal addPersonalScore(AddPersonalScoreRequest request){
         return personalRepository.save(request.toEntity());
     }
+    public List<Personal> findByUserId(Long userId) { return personalRepository.findByUserId(userId);}
+
 }
