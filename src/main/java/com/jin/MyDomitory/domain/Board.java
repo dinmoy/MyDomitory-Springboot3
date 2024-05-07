@@ -30,4 +30,10 @@ public class Board {
         this.title=title;
         this.content=content;
     }
+
+    public void update(Long userId, String title, String content){
+        this.userId=userId;
+        this.title=title;
+        this.content=content;
+    }
 }

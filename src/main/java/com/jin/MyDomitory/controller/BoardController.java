@@ -3,6 +3,7 @@ package com.jin.MyDomitory.controller;
 import com.jin.MyDomitory.domain.Board;
 import com.jin.MyDomitory.dto.board.AddBoardRequest;
 import com.jin.MyDomitory.dto.board.BoardResponse;
+import com.jin.MyDomitory.dto.board.UpdateBoardRequest;
 import com.jin.MyDomitory.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +40,11 @@ public class BoardController {
                 ResponseEntity.status(HttpStatus.CREATED).body((newBoard)):
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Board> updateBoard(@PathVariable("id") Long id, @RequestBody UpdateBoardRequest request) {
+        Board updatedBoard = boardService.update(id, request);
+        return ResponseEntity.ok(updatedBoard);
+    }
+
 }
