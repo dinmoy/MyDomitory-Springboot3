@@ -2,8 +2,10 @@ package com.jin.MyDomitory.domain;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Getter;
 
 @Entity
+@Getter
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

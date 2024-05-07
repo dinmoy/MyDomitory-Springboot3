@@ -6,6 +6,8 @@ import com.jin.MyDomitory.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoardService {
     @Autowired
@@ -18,4 +20,6 @@ public class BoardService {
     public Board addBoard(AddBoardRequest request) {
         return boardRepository.save(request.toEntity());
     }
+
+    public List<Board> findAll() { return boardRepository.findAll(); }
 }
