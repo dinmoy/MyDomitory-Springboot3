@@ -31,4 +31,10 @@ public class BoardService {
         board.update(request.getUserId(), request.getTitle(), request.getContent());
         return boardRepository.save(board);
     }
+
+    public void deleteById(Long id) {
+        Board board = boardRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Board not found with id: " + id));
+        boardRepository.delete(board);
+    }
 }
