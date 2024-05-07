@@ -7,9 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 public class AddPersonalScoreRequest {
-    private int userId;
+    private Long userId;
     private String content;
-    private int score;
+    private Long score;
 
     public Personal toEntity(){
         return Personal.builder()

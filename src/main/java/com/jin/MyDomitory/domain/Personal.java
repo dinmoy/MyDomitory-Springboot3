@@ -15,19 +15,19 @@ public class Personal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int Id;
+    private Long Id;
 
     @Column(nullable = false)
-    private int userId;
+    private Long userId;
 
     @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
-    private int score;
+    private Long score;
 
     @Builder
-    public Personal(int userId,String content,int score){
+    public Personal(Long userId,String content,Long score){
         this.userId=userId;
         this.content=content;
         this.score=score;
