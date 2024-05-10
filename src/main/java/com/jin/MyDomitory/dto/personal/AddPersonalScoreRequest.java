@@ -8,12 +8,14 @@ import lombok.*;
 @Getter
 public class AddPersonalScoreRequest {
     private Long userId;
+    private String type;
     private String content;
     private Long score;
 
     public Personal toEntity(){
         return Personal.builder()
                 .userId(userId)
+                .type(type)
                 .content(content)
                 .score(score)
                 .build();

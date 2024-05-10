@@ -21,14 +21,18 @@ public class Personal {
     private Long userId;
 
     @Column(nullable = false)
+    private String type;
+
+    @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
     private Long score;
 
     @Builder
-    public Personal(Long userId,String content,Long score){
+    public Personal(Long userId,String type,String content,Long score){
         this.userId=userId;
+        this.type=type;
         this.content=content;
         this.score=score;
     }
