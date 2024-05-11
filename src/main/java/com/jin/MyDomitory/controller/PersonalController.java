@@ -42,4 +42,17 @@ public class PersonalController {
         }
         return ResponseEntity.status(HttpStatus.OK).body((personalScoreList));
     }
+
+    @GetMapping("/penalties/{userId}")
+    public ResponseEntity<List<PersonalResponse>> findPenalties(@PathVariable("userId") Long userId) {
+        List<PersonalResponse> penaltyList = personalService.findByUserId(userId)
+                .stream()
+                .filter(personal -> personal.getType().equals("벌점"))
+                .map(PersonalResponse::new)
+                .toList();
+        if (penaltyList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(penaltyList);
+    }
 }
