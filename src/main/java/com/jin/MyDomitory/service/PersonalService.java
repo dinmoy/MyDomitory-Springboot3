@@ -21,4 +21,10 @@ public class PersonalService {
     }
     public List<Personal> findByUserId(Long userId) { return personalRepository.findByUserId(userId);}
 
+    public Long findTotalScoreByUserId(Long userId){
+        List<Personal> scores=personalRepository.findByUserId(userId);
+        Long totalScore=0l;
+        for(Personal score: scores) totalScore+=score.getScore();
+        return totalScore;
+    }
 }

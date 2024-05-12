@@ -68,4 +68,12 @@ public class PersonalController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(awardList);
     }
+
+    @GetMapping("/total/{userId}")
+    public ResponseEntity<Long> findTotalScore(@PathVariable("userId") Long userId){
+        Long personTotal=personalService.findTotalScoreByUserId(userId);
+        return (personTotal!=null)?
+                ResponseEntity.status(HttpStatus.OK).body(personTotal):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 }
