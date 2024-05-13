@@ -4,6 +4,7 @@ import com.jin.MyDomitory.domain.Cleaning;
 import com.jin.MyDomitory.domain.Housemaster;
 import com.jin.MyDomitory.dto.cleaning.AddCleaningRequest;
 import com.jin.MyDomitory.dto.housemaster.AddHouseMasterRequest;
+import com.jin.MyDomitory.dto.housemaster.HouseMasterResponse;
 import com.jin.MyDomitory.service.CleaningService;
 import com.jin.MyDomitory.service.HouseMasterService;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +25,10 @@ public class PublicController {
     private CleaningService cleaningService;
 
     @GetMapping("/housemaster")
-    public ResponseEntity<List<AddHouseMasterRequest>> findAll(){
-        List<AddHouseMasterRequest> housemasters=houseMasterService.findAll()
+    public ResponseEntity<List<HouseMasterResponse>> findAll(){
+        List<HouseMasterResponse> housemasters=houseMasterService.findAll()
                 .stream()
-                .map(AddHouseMasterRequest::new)
+                .map(HouseMasterResponse::new)
                 .toList();
         return ResponseEntity.ok().body(housemasters);
     }
