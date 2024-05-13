@@ -3,6 +3,7 @@ package com.jin.MyDomitory.controller;
 import com.jin.MyDomitory.domain.Cleaning;
 import com.jin.MyDomitory.domain.Housemaster;
 import com.jin.MyDomitory.dto.cleaning.AddCleaningRequest;
+import com.jin.MyDomitory.dto.cleaning.CleaningResponse;
 import com.jin.MyDomitory.dto.housemaster.AddHouseMasterRequest;
 import com.jin.MyDomitory.dto.housemaster.HouseMasterResponse;
 import com.jin.MyDomitory.service.CleaningService;
@@ -57,6 +58,17 @@ public class PublicController {
                 .toList();
         return (housemasters!=null)?
                 ResponseEntity.status(HttpStatus.OK).body(housemasters):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @GetMapping("/cleaning/today")
+    public ResponseEntity<List<CleaningResponse>> findByCleanDate(){
+        List<CleaningResponse> cleanRooms=cleaningService.findByDate()
+                .stream()
+                .map(CleaningResponse::new)
+                .toList();
+        return (cleanRooms!=null)?
+                ResponseEntity.status(HttpStatus.OK).body(cleanRooms):
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 }

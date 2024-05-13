@@ -23,6 +23,8 @@ public class Cleaning {
     @Column(nullable = false)
     private LocalDate date;
 
+    public Cleaning(){ }
+
     @Builder
     public Cleaning(String roomNum,String cleanPoint,LocalDate date){
         this.roomNum=roomNum;
