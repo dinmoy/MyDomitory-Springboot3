@@ -20,6 +20,9 @@ public class Housemaster {
     @Column(nullable = false)
     private LocalDate date;
 
+    public Housemaster() {
+    }
+
     @Builder
     public Housemaster(String teacherName,LocalDate date){
         this.teacherName=teacherName;
