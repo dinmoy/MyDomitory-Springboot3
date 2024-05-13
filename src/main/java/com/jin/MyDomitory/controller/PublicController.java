@@ -1,7 +1,10 @@
 package com.jin.MyDomitory.controller;
 
+import com.jin.MyDomitory.domain.Cleaning;
 import com.jin.MyDomitory.domain.Housemaster;
+import com.jin.MyDomitory.dto.cleaning.AddCleaningRequest;
 import com.jin.MyDomitory.dto.housemaster.AddHouseMasterRequest;
+import com.jin.MyDomitory.service.CleaningService;
 import com.jin.MyDomitory.service.HouseMasterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ import java.util.List;
 public class PublicController {
     @Autowired
     private HouseMasterService houseMasterService;
+    @Autowired
+    private CleaningService cleaningService;
 
     @GetMapping("/housemaster")
     public ResponseEntity<List<AddHouseMasterRequest>> findAll(){
@@ -32,6 +37,14 @@ public class PublicController {
         Housemaster newHouseMaster=houseMasterService.addMaster(request);
         return (newHouseMaster!=null)?
                 ResponseEntity.status(HttpStatus.OK).body(newHouseMaster):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PostMapping("/cleaning")
+    public ResponseEntity<Cleaning> addCleaning(@RequestBody AddCleaningRequest request){
+        Cleaning newCleaning=cleaningService.addCleaning(request);
+        return (newCleaning!=null)?
+                ResponseEntity.status(HttpStatus.OK).body(newCleaning):
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 }
