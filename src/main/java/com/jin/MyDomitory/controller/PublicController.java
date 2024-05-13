@@ -48,4 +48,15 @@ public class PublicController {
                 ResponseEntity.status(HttpStatus.OK).body(newCleaning):
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+    @GetMapping("/housemaster/today")
+    public ResponseEntity<List<HouseMasterResponse>> findByDate(){
+        List<HouseMasterResponse> housemasters=houseMasterService.findByDate()
+                .stream()
+                .map(HouseMasterResponse::new)
+                .toList();
+        return (housemasters!=null)?
+                ResponseEntity.status(HttpStatus.OK).body(housemasters):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 }
