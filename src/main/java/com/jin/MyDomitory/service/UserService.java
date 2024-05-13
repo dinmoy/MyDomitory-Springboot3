@@ -25,9 +25,10 @@ public class UserService {
     }
 
     public User Login(LoginUserRequest request){
-        User user=userRepository.findByEmailAndPassword(request.getEmail(),request.getPassword());
-        if(user==null) return null;
-        return user;
+        User user=userRepository.findByEmail(request.getEmail());
+        if(user!=null &&bCryptPasswordEncoder.matches(request.getPassword(),user.getPassword()))
+            return user;
+        return null;
     }
 
 
