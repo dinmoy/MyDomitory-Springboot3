@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+@CrossOrigin(originPatterns = "http://localhost:3000")
 @RestController
 @RequestMapping("/board")
 @RequiredArgsConstructor
