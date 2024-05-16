@@ -5,6 +5,8 @@ import com.jin.MyDomitory.dto.user.AddUserRequest;
 import com.jin.MyDomitory.dto.user.LoginUserRequest;
 import com.jin.MyDomitory.dto.user.UserResponse;
 import com.jin.MyDomitory.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin(originPatterns = "http://localhost:3000")
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -34,16 +35,17 @@ public class UserController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
     @PostMapping("/login")
-    public ResponseEntity<User> Login(@RequestBody LoginUserRequest request){
-        User loggedUser=userService.Login(request);
+    public ResponseEntity<User> Login(@RequestBody LoginUserRequest dto, HttpServletRequest reqest){
+        User loggedUser=userService.Login(dto,reqest);
         return (loggedUser!=null)?
                 ResponseEntity.status(HttpStatus.OK).build():
                 ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<UserResponse>> findByUserId(@PathVariable("userId") Long userId) {
-        List<UserResponse> laundryList = userService.findById(userId)
+    @GetMapping("/profile")
+    public ResponseEntity<List<UserResponse>> findByUserId(HttpSession session) {
+        User sessionUser = (User) session.getAttribute("loggedUser");
+        List<UserResponse> laundryList = userService.findById(sessionUser.getId())
                 .stream()
                 .map(UserResponse::new)
                 .toList();
