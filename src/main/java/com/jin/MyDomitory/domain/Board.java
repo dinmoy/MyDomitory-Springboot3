@@ -17,6 +17,9 @@ public class Board {
     private Long userId;
 
     @Column(nullable = false)
+    private String type;
+
+    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false)
@@ -25,14 +28,16 @@ public class Board {
     public Board(){}
 
     @Builder
-    public Board(Long userId, String title, String content){
+    public Board(Long userId, String type,String title, String content){
         this.userId=userId;
+        this.type=type;
         this.title=title;
         this.content=content;
     }
 
-    public void update(Long userId, String title, String content){
+    public void update(Long userId, String type,String title, String content){
         this.userId=userId;
+        this.type=type;
         this.title=title;
         this.content=content;
     }

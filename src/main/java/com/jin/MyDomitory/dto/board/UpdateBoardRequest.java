@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class UpdateBoardRequest {
     private Long userId;
+    private String type;
     private String title;
     private String content;
 }

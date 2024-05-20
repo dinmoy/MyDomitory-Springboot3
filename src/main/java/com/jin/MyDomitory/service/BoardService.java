@@ -28,7 +28,7 @@ public class BoardService {
     public Board update(Long id, UpdateBoardRequest request) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Board not found with id: " + id));
-        board.update(request.getUserId(), request.getTitle(), request.getContent());
+        board.update(request.getUserId(), request.getType(),request.getTitle(), request.getContent());
         return boardRepository.save(board);
     }
 

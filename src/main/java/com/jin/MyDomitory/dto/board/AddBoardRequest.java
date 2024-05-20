@@ -10,12 +10,14 @@ import lombok.NoArgsConstructor;
 @Getter
 public class AddBoardRequest {
     private Long userId;
+    private String type;
     private String title;
     private String content;
 
     public Board toEntity(){
         return Board.builder()
                 .userId(userId)
+                .type(type)
                 .title(title)
                 .content(content)
                 .build();

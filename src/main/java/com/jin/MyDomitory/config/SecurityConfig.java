@@ -12,7 +12,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 public class SecurityConfig {
-
     @Bean
     public static BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -21,16 +20,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors(withDefaults());
-
         http
                 .csrf(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/user/**").permitAll()
+                        .requestMatchers("/board/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .logout(withDefaults());
-
         return http.build();
     }
 }
