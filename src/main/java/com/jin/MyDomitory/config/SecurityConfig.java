@@ -26,6 +26,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/user/**").permitAll()
                         .requestMatchers("/board/**").permitAll()
+                        .requestMatchers("/laundry/**").permitAll()
+                        .requestMatchers("/personal/**").permitAll()
+                        .requestMatchers("/public/**").permitAll()
+
+
                         .anyRequest().authenticated()
                 )
                 .logout(withDefaults());
