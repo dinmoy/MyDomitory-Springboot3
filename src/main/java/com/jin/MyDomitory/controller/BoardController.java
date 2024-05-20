@@ -6,7 +6,6 @@ import com.jin.MyDomitory.dto.board.BoardResponse;
 import com.jin.MyDomitory.dto.board.UpdateBoardRequest;
 import com.jin.MyDomitory.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,6 @@ import java.util.List;
 @RequestMapping("/board")
 @RequiredArgsConstructor
 public class BoardController {
-    @Autowired
     private BoardService boardService;
 
     public BoardController(BoardService boardService) {
@@ -27,7 +25,7 @@ public class BoardController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BoardResponse>> findAllBoar(){
+    public ResponseEntity<List<BoardResponse>> findAllBoards(){
         List<BoardResponse> boards=boardService.findAll()
                 .stream()
                 .map(BoardResponse::new)
