@@ -6,13 +6,14 @@ import com.jin.MyDomitory.dto.board.UpdateBoardRequest;
 import com.jin.MyDomitory.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 public class BoardService {
+    @Autowired
     private final BoardRepository boardRepository;
 
-    @Autowired
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }

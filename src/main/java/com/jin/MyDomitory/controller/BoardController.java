@@ -6,6 +6,7 @@ import com.jin.MyDomitory.dto.board.BoardResponse;
 import com.jin.MyDomitory.dto.board.UpdateBoardRequest;
 import com.jin.MyDomitory.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin(originPatterns = "http://localhost:3000")
 @RestController
 @RequestMapping("/board")
 @RequiredArgsConstructor
 public class BoardController {
+    @Autowired
     private BoardService boardService;
 
     public BoardController(BoardService boardService) {
