@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDate;
 
 
 @NoArgsConstructor
@@ -29,11 +32,16 @@ public class Personal {
     @Column(nullable = false)
     private Long score;
 
+    @CreationTimestamp
+    @Column(nullable = false)
+    private LocalDate date;
+
     @Builder
-    public Personal(Long userId,String type,String content,Long score){
+    public Personal(Long userId,String type,String content,Long score,LocalDate date){
         this.userId=userId;
         this.type=type;
         this.content=content;
         this.score=score;
+        this.date=date;
     }
 }
