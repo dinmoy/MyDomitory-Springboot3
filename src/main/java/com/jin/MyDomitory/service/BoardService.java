@@ -1,9 +1,11 @@
 package com.jin.MyDomitory.service;
 
 import com.jin.MyDomitory.domain.Board;
+import com.jin.MyDomitory.domain.User;
 import com.jin.MyDomitory.dto.board.AddBoardRequest;
 import com.jin.MyDomitory.dto.board.UpdateBoardRequest;
 import com.jin.MyDomitory.repository.BoardRepository;
+import com.jin.MyDomitory.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +15,17 @@ import java.util.List;
 public class BoardService {
     @Autowired
     private final BoardRepository boardRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
     public Board addBoard(AddBoardRequest request) {
+        Long userId = request.getUserId();
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + userId));
         return boardRepository.save(request.toEntity());
     }
 
