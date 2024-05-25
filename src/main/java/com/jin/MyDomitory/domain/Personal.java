@@ -20,7 +20,8 @@ public class Personal {
     @Column(name = "id")
     private Long Id;
 
-    @Column(nullable = false)
+    @CollectionTable(name = "user", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "user_id")
     private Long userId;
 
     @Column(nullable = false)
