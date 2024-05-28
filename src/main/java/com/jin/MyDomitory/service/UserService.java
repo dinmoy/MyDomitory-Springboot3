@@ -4,8 +4,6 @@ import com.jin.MyDomitory.domain.User;
 import com.jin.MyDomitory.dto.user.AddUserRequest;
 import com.jin.MyDomitory.dto.user.LoginUserRequest;
 import com.jin.MyDomitory.repository.UserRepository;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,15 +26,13 @@ public class UserService {
         return userRepository.save(request.toEntity());
     }
 
-    public User Login(LoginUserRequest dto, HttpServletRequest request){
-        User user=userRepository.findByEmail(dto.getEmail());
-        HttpSession session=request.getSession();
-        if(user!=null &&bCryptPasswordEncoder.matches(dto.getPassword(),user.getPassword())){
-            session.setAttribute("loggedUser",user);
+    public User Login(LoginUserRequest request){
+        User user=userRepository.findByEmail(request.getEmail());
+        if(user!=null &&bCryptPasswordEncoder.matches(request.getPassword(),user.getPassword()))
             return user;
-        }
         return null;
     }
+
 
     public List<User> findById(Long userId){
         return userRepository.findAllById(userId);
