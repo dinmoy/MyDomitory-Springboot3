@@ -29,6 +29,7 @@ public class SecurityConfig {
                         .requestMatchers("/laundry/**").permitAll()
                         .requestMatchers("/personal/**").permitAll()
                         .requestMatchers("/public/**").permitAll()
+                        .requestMatchers("/schedule/**").permitAll()
 
 
                         .anyRequest().authenticated()
