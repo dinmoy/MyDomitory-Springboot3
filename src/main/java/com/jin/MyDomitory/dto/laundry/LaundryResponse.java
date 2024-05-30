@@ -3,14 +3,14 @@ package com.jin.MyDomitory.dto.laundry;
 import com.jin.MyDomitory.domain.Laundry;
 import lombok.Getter;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Getter
 public class LaundryResponse {
     private Long userId;
     private String room_num;
     private String washer_num;
-    private LocalTime wash_time;
+    private LocalDateTime wash_time;
 
     public LaundryResponse(Laundry laundry){
         this.userId=laundry.getUserId();

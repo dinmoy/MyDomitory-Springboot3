@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -26,11 +26,11 @@ public class Laundry {
     private String room_num;
 
     @Column(nullable = false)
-    private LocalTime wash_time;
+    private LocalDateTime wash_time;
 
     public Laundry(){}
     @Builder
-    public Laundry(Long userId,String washer_num, String room_num,LocalTime wash_time){
+    public Laundry(Long userId,String washer_num, String room_num,LocalDateTime wash_time){
         this.userId=userId;
         this.washer_num=washer_num;
         this.room_num=room_num;
