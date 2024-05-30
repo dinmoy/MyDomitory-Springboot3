@@ -37,4 +37,14 @@ public class ScheduleController {
         return ResponseEntity.ok().body(schedules);
     }
 
+    @GetMapping("/today")
+    public ResponseEntity<List<ScheduleResponse> > findByDate(){
+        List<ScheduleResponse> schedules=scheduleService.findByDate()
+                .stream()
+                .map(ScheduleResponse::new)
+                .toList();
+        return (schedules!=null)?
+                ResponseEntity.status(HttpStatus.OK).body(schedules):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 }
