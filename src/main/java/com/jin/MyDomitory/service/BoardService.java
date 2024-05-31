@@ -33,6 +33,11 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
+    public Board findById(Long id){
+        return  boardRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("Board not found with id: " + id));
+    }
+
     public Board update(Long id, UpdateBoardRequest request) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Board not found with id: " + id));

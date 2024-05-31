@@ -34,6 +34,15 @@ public class BoardController {
         return ResponseEntity.ok()
                 .body(boards);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BoardResponse> findBoardById(@PathVariable("id") Long id){
+        Board board=boardService.findById(id);
+        BoardResponse boardResponse = new BoardResponse(board);
+        return (board!=null)?
+                ResponseEntity.status(HttpStatus.CREATED).body(boardResponse):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
     @PostMapping
     public ResponseEntity<Board> addBoard(@RequestBody AddBoardRequest request){
         Board newBoard=boardService.addBoard(request);
