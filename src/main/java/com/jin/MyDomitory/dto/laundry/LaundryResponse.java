@@ -3,20 +3,16 @@ package com.jin.MyDomitory.dto.laundry;
 import com.jin.MyDomitory.domain.Laundry;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Getter
 public class LaundryResponse {
     private Long userId;
-    private String room_num;
-    private String washer_num;
-    private LocalDateTime wash_time;
+    private Long room_num;
+    private Long washer_num;
 
     public LaundryResponse(Laundry laundry){
         this.userId=laundry.getUserId();
         this.room_num=laundry.getRoom_num();
         this.washer_num=laundry.getWasher_num();
-        this.wash_time=laundry.getWash_time();
     }
 
 }
