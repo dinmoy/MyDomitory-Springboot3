@@ -26,8 +26,12 @@ public class ScheduleService {
         return scheduleRepository.findAll();
     }
 
-    public List<Schedule> findByDate(){
+    public List<Schedule> findByToday(){
         LocalDate today=LocalDate.now();
         return scheduleRepository.findByDate(today);
+    }
+
+    public List<Schedule> findByDate(LocalDate date){
+        return scheduleRepository.findByDate(date);
     }
 }

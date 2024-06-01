@@ -27,7 +27,8 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> addUser(@RequestBody AddUserRequest request){
+    public ResponseEntity<User> addUser
+            (@RequestBody AddUserRequest request){
         User newUser=userService.AddUser(request);
         return (newUser!=null)?
                 ResponseEntity.status(HttpStatus.OK).body((newUser)):

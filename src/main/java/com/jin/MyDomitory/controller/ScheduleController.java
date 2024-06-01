@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -39,7 +40,18 @@ public class ScheduleController {
 
     @GetMapping("/today")
     public ResponseEntity<List<ScheduleResponse> > findByDate(){
-        List<ScheduleResponse> schedules=scheduleService.findByDate()
+        List<ScheduleResponse> schedules=scheduleService.findByToday()
+                .stream()
+                .map(ScheduleResponse::new)
+                .toList();
+        return (schedules!=null)?
+                ResponseEntity.status(HttpStatus.OK).body(schedules):
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @GetMapping("/{date}")
+    public ResponseEntity<List<ScheduleResponse>> findByDate(@PathVariable("date") LocalDate date){
+        List<ScheduleResponse> schedules=scheduleService.findByDate(date)
                 .stream()
                 .map(ScheduleResponse::new)
                 .toList();
