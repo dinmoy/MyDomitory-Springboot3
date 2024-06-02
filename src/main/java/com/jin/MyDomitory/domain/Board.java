@@ -3,6 +3,8 @@ package com.jin.MyDomitory.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -25,14 +27,19 @@ public class Board {
     @Column(nullable = false)
     private String content;
 
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDate createdAt=LocalDate.now();
+
     public Board(){}
 
     @Builder
-    public Board(Long userId, String type,String title, String content){
+    public Board(Long userId, String type,String title, String content,LocalDate createdAt){
         this.userId=userId;
         this.type=type;
         this.title=title;
         this.content=content;
+        this.createdAt=createdAt;
     }
 
     public void update(Long userId, String type,String title, String content){

@@ -3,6 +3,7 @@ package com.jin.MyDomitory.dto.board;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,4 +13,5 @@ public class UpdateBoardRequest {
     private String type;
     private String title;
     private String content;
+    private LocalDate createdAt;
 }
