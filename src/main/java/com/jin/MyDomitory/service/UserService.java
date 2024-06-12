@@ -10,10 +10,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.mysql.cj.conf.PropertyKey.logger;
+
 @Service
 public class UserService {
     @Autowired
     private final UserRepository userRepository;
+    @Autowired
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
@@ -28,9 +31,10 @@ public class UserService {
 
     public User Login(LoginUserRequest request){
         User user=userRepository.findByEmail(request.getEmail());
-        if(user!=null &&bCryptPasswordEncoder.matches(request.getPassword(),user.getPassword()))
-            return user;
-        return null;
+        if(user==null || !bCryptPasswordEncoder.matches((request.getPassword()),user.getPassword())) {
+            throw new IllegalArgumentException("Invalid email or password");
+        }
+        return user;
     }
 
 
