@@ -3,6 +3,8 @@ package com.jin.MyDomitory.dto.board;
 import com.jin.MyDomitory.domain.Board;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class BoardResponse {
     private Long id;
@@ -10,6 +12,7 @@ public class BoardResponse {
     private String type;
     private String title;
     private String content;
+    private LocalDateTime createdAt;
 
     public BoardResponse(Board board){
         this.id=board.getId();
@@ -17,5 +20,6 @@ public class BoardResponse {
         this.type=board.getType();
         this.title=board.getTitle();
         this.content=board.getContent();
+        this.createdAt=board.getCreatedAt();
     }
 }

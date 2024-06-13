@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +15,7 @@ public class AddBoardRequest {
     private String type;
     private String title;
     private String content;
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     public Board toEntity(){
         return Board.builder()

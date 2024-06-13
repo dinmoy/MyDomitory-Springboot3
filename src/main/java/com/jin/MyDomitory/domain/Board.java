@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -29,12 +29,12 @@ public class Board {
 
     @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDate createdAt=LocalDate.now();
+    private LocalDateTime createdAt=LocalDateTime.now();
 
     public Board(){}
 
     @Builder
-    public Board(Long userId, String type,String title, String content,LocalDate createdAt){
+    public Board(Long userId, String type,String title, String content,LocalDateTime createdAt){
         this.userId=userId;
         this.type=type;
         this.title=title;
