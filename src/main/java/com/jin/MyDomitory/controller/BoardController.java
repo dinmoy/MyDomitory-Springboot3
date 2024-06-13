@@ -43,6 +43,16 @@ public class BoardController {
                 ResponseEntity.status(HttpStatus.CREATED).body(boardResponse):
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+    @GetMapping("/{id}/previous")
+    public ResponseEntity<BoardResponse> findPreviousPost(@PathVariable("id") Long id){
+        Board previousPost=boardService.findPreviousPost(id);
+        BoardResponse boardResponse = new BoardResponse(previousPost);
+        return (previousPost!=null)?
+                ResponseEntity.status(HttpStatus.CREATED).body(boardResponse):
+                ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
     @PostMapping
     public ResponseEntity<Board> addBoard(@RequestBody AddBoardRequest request){
         Board newBoard=boardService.addBoard(request);
