@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface BoardRepository extends JpaRepository<Board,Long> {
     Optional<Board> findFirstByCreatedAtLessThanOrderByCreatedAtDesc(LocalDateTime createdAt);
+    Optional<Board> findFirstByCreatedAtGreaterThanOrderByCreatedAtAsc(LocalDateTime createdAt);
 }

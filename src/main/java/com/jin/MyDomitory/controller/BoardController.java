@@ -44,11 +44,22 @@ public class BoardController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    //이전 글 조회
     @GetMapping("/{id}/previous")
     public ResponseEntity<BoardResponse> findPreviousPost(@PathVariable("id") Long id){
         Board previousPost=boardService.findPreviousPost(id);
         BoardResponse boardResponse = new BoardResponse(previousPost);
         return (previousPost!=null)?
+                ResponseEntity.status(HttpStatus.CREATED).body(boardResponse):
+                ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    //다음 글 조회
+    @GetMapping("/{id}/next")
+    public ResponseEntity<BoardResponse> findNextPost(@PathVariable("id") Long id){
+        Board nextPost=boardService.findNextPost(id);
+        BoardResponse boardResponse = new BoardResponse(nextPost);
+        return (nextPost!=null)?
                 ResponseEntity.status(HttpStatus.CREATED).body(boardResponse):
                 ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
