@@ -33,7 +33,6 @@ public class Personal {
     @Column(nullable = false)
     private Long score;
 
-    @CreationTimestamp
     @Column(nullable = false)
     private LocalDate date;
 
