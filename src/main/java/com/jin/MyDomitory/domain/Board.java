@@ -27,8 +27,9 @@ public class Board {
     @Column(nullable = false)
     private String content;
 
+    @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt=LocalDateTime.now();
 
     public Board(){}
 
